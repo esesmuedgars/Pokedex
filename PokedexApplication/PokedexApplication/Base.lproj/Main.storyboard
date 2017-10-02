@@ -42,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="109" width="320" height="459"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8Pp-GK-64C">
-                                <rect key="frame" x="20" y="129" width="280" height="439"/>
+                                <rect key="frame" x="20" y="129" width="280" height="419"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rkK-7J-yZK">
                                     <size key="itemSize" width="100" height="100"/>
@@ -110,7 +110,7 @@
                             <constraint firstItem="H2e-KT-CPd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oQF-jy-Bxf"/>
                             <constraint firstItem="RtS-ez-TFz" firstAttribute="top" secondItem="TM8-4F-Ikj" secondAttribute="bottom" id="ssr-4b-bHn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RtS-ez-TFz" secondAttribute="bottom" id="x6X-dM-wq8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Pp-GK-64C" secondAttribute="bottom" id="z0b-3V-jRA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Pp-GK-64C" secondAttribute="bottom" constant="20" id="z0b-3V-jRA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
