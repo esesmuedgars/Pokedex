@@ -9,23 +9,31 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+	
+	let defaults = UserDefaults.standard
 	
 	var pokemon = [Pokemon]()
+	var filteredPokemon = [Pokemon]()
+	var searching = false
 	var musicPlayer: AVAudioPlayer!
-	
+
 	@IBOutlet weak var collectionView: UICollectionView!
+	@IBOutlet weak var musicButton: UIButton!
+	@IBOutlet weak var searchBar: UISearchBar!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		defaults.register(defaults: ["MusicShouldPlay": true])
+		defaults.register(defaults: ["MusicButtonAlpha": 1.0])
 		
 		parsePokemonCSV()
+		setupSearchBar()
 		initAudio()
 	}
 	
 	func parsePokemonCSV() {
 		if let path = Bundle.main.path(forResource: "pokemon", ofType: "csv") {
-			
 			do {
 				let csv = try CSV(contentsOfURL: path)
 				let rows = csv.rows
@@ -42,6 +50,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 		}
 	}
 	
+	func setupSearchBar() {
+		if let textField = self.searchBar.value(forKey: "searchField") as? UITextField,
+			let iconView = textField.leftView as? UIImageView {
+			iconView.image = iconView.image?.withRenderingMode(.alwaysTemplate)
+			iconView.tintColor = .white
+			textField.clearButtonMode = .never
+		}
+	}
+	
 	func initAudio() {
 		if let path = Bundle.main.path(forResource: "music", ofType: "mp3") {
 			
@@ -50,7 +67,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 					musicPlayer = try AVAudioPlayer(contentsOf: url)
 					musicPlayer.prepareToPlay()
 					musicPlayer.numberOfLoops = -1
-					musicPlayer.play()
+					
+					musicButton.alpha = CGFloat(defaults.double(forKey: "MusicButtonAlpha"))
+					if (defaults.bool(forKey: "MusicShouldPlay")) && (defaults.double(forKey: "MusicButtonAlpha") == 1.0) {
+						musicPlayer.play()
+					}
 				}
 			} catch let err as NSError {
 				print(err.debugDescription)
@@ -59,12 +80,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		if searching {
+			return filteredPokemon.count
+		}
 		return pokemon.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonCell", for: indexPath) as? PokemonCell {
-			let pokemon = self.pokemon[indexPath.row]
+			
+			let pokemon: Pokemon!
+			
+			if searching {
+				pokemon = self.filteredPokemon[indexPath.row]
+			} else {
+				pokemon = self.pokemon[indexPath.row]
+			}
 			cell.configureCell(pokemon: pokemon)
 			
 			return cell
@@ -74,7 +105,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		//TODO: do smth on selected
+		var pokemon: Pokemon!
+		if searching {
+			pokemon = self.filteredPokemon[indexPath.row]
+		} else {
+			pokemon = self.pokemon[indexPath.row]
+		}
+		performSegue(withIdentifier: "PokemonDetailSegue", sender: pokemon)
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -82,14 +119,50 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 	}
 	
 	@IBAction func musicButtonPressed(_ sender: UIButton) {
-		//TODO: add UserDefaults to save if music was on or off
 		if musicPlayer.isPlaying {
 			musicPlayer.pause()
 			sender.alpha = 0.2
+			
+			defaults.set(false, forKey: "MusicShouldPlay")
+			defaults.set(0.2, forKey: "MusicButtonAlpha")
 		} else {
 			musicPlayer.play()
 			sender.alpha = 1.0
+			
+			defaults.set(true, forKey: "MusicShouldPlay")
+			defaults.set(1.0, forKey: "MusicButtonAlpha")
 		}
 	}
+	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		view.endEditing(true)
+	}
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		if searchText.isEmpty {
+			searching = false
+			view.endEditing(true)
+		} else {
+			searching = true
+			filteredPokemon = pokemon.filter({ $0.name.range(of: searchText.lowercased()) != nil })
+		}
+		collectionView.reloadData()
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "PokemonDetailSegue" {
+			if let PokemonDetailVC = segue.destination as? PokemonDetailViewController,
+				let pokemon = sender as? Pokemon {
+				PokemonDetailVC.pokemon = pokemon
+			}
+		}
+	}
+	
+//	override func viewWillAppear(_ animated: Bool) {
+//		searchBar.text?.clear()
+//		searching = false
+//		collectionView.reloadData()
+//		collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+//	}
 }
 

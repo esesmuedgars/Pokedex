@@ -35,3 +35,9 @@ class Pokemon {
 		self._pokedexId = pokedexId
 	}
 }
+
+extension String {
+	public mutating func clear() {
+		self = ""
+	}
+}
