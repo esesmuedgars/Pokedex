@@ -14,6 +14,16 @@ class PokemonDetailViewController: UIViewController {
 
 	@IBOutlet weak var navigationLabel: UILabel!
 	@IBOutlet weak var containerView: UIView!
+	@IBOutlet weak var currentEvolutionImage: UIImageView!
+	@IBOutlet weak var nextEvolutionImage: UIImageView!
+	@IBOutlet weak var descriptionLabel: UILabel!
+	@IBOutlet weak var typeLabel: UILabel!
+	@IBOutlet weak var defenceLabel: UILabel!
+	@IBOutlet weak var heightLabel: UILabel!
+	@IBOutlet weak var pokedexIdLabel: UILabel!
+	@IBOutlet weak var weightLabel: UILabel!
+	@IBOutlet weak var baseAttackLabel: UILabel!
+	@IBOutlet weak var evolutionLabel: UILabel!
 	
 	@IBAction func backButtonPressed(_ sender: UIButton) {
 		dismiss(animated: true, completion: nil)
