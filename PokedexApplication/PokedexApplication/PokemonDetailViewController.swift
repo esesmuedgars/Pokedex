@@ -32,9 +32,27 @@ class PokemonDetailViewController: UIViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		navigationLabel.text = pokemon.name.capitalized
 		containerView.layer.cornerRadius = 10
+		
+		pokemon.downloadPokemonDetail() {
+			//NOTE: will only be called after the network call is complete
+			self.updateUI()
+		}
 	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
+	
+	func updateUI() {
+		currentEvolutionImage.image = UIImage(named: String(pokemon.pokedexId))
+		nextEvolutionImage.image = UIImage(named: String(pokemon.pokedexId + 1)) //NOTE: placeholder imageString
+		descriptionLabel.text = pokemon.description
+		typeLabel.text = pokemon.type
+		defenceLabel.text = String(pokemon.defense)
+		heightLabel.text = pokemon.height
+		pokedexIdLabel.text = String(pokemon.pokedexId)
+		weightLabel.text = pokemon.weight
+		baseAttackLabel.text = String(pokemon.baseAttack)
+		evolutionLabel.text = pokemon.nextEvolutionString
+	}
 }
