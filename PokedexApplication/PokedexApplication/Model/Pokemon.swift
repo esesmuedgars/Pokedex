@@ -19,6 +19,7 @@ class Pokemon {
 	private var _height: String!
 	private var _weight: String!
 	private var _baseAttack: Int!
+	private var _nextEvolution: String!
 	private var _nextEvolutionString: String!
 	
 	private var _pokemonURL: String!
@@ -61,7 +62,11 @@ class Pokemon {
 			return _type
 		}
 		set {
-			_type = newValue
+			if _type == "Typeless" || _type == nil || _type == newValue {
+				_type = newValue
+			} else {
+				_type = "\(_type!)/\(newValue)"
+			}
 		}
 	}
 	
@@ -113,6 +118,18 @@ class Pokemon {
 		}
 	}
 	
+	var nextEvolution: String {
+		get {
+			if _nextEvolution == nil {
+				_nextEvolution = "back"
+			}
+			return _nextEvolution
+		}
+		set {
+			_nextEvolution = newValue
+		}
+	}
+	
 	var nextEvolutionString: String {
 		get {
 			if _nextEvolutionString == nil {
@@ -121,7 +138,7 @@ class Pokemon {
 			return _nextEvolutionString
 		}
 		set {
-			_nextEvolutionString = newValue
+			_nextEvolutionString = "Next Evolution: \(newValue)!"
 		}
 	}
 	
@@ -152,6 +169,50 @@ class Pokemon {
 					self.defense = defense
 				}
 				
+				if let types = dict["types"] as? [Dictionary<String, Any>], types.count > 0 {
+					for item in types {
+						if let type = item["name"] as? String {
+							self.type = type.capitalized
+						}
+					}
+				}
+				
+				if let evolutions = dict["evolutions"] as? [Dictionary<String, Any>], evolutions.count > 0,
+					let url = evolutions[0]["resource_uri"] as? String {
+					let stringURL = BASE_URL + url
+					Alamofire.request(stringURL).responseJSON {
+						if let dict = $0.result.value as? Dictionary<String, Any> {
+							
+							if let nextEvolution = dict["pkdx_id"] as? Int {
+								if nextEvolution < 718 {
+									self.nextEvolution = String(nextEvolution)
+								}
+							}
+							
+//							if let evolvingTo = dict["name"] as? String {
+//								self.nextEvolutionString = evolvingTo
+//							}
+						}
+						completed()
+					}
+				}
+				
+				if let descriptions = dict["descriptions"] as? [Dictionary<String, String>], descriptions.count > 0 {
+					if let url = descriptions[0]["resource_uri"] {
+						let stringURL = BASE_URL + url
+						Alamofire.request(stringURL).responseJSON {
+							if let dict = $0.result.value as? Dictionary<String, Any> {
+								
+								if let description = dict["description"] as? String {
+									self.description = description.replacingOccurrences(of: "POKMON", with: "Pokémon")
+								}
+							}
+							completed()
+						}
+					}
+				} else {
+					self.description = ""
+				}
 			}
 			completed()
 		}

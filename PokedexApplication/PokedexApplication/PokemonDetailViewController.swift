@@ -24,6 +24,7 @@ class PokemonDetailViewController: UIViewController {
 	@IBOutlet weak var weightLabel: UILabel!
 	@IBOutlet weak var baseAttackLabel: UILabel!
 	@IBOutlet weak var evolutionLabel: UILabel!
+	@IBOutlet weak var containerRightConstraint: NSLayoutConstraint!
 	
 	@IBAction func backButtonPressed(_ sender: UIButton) {
 		dismiss(animated: true, completion: nil)
@@ -34,7 +35,6 @@ class PokemonDetailViewController: UIViewController {
 		containerView.layer.cornerRadius = 10
 		
 		pokemon.downloadPokemonDetail() {
-			//NOTE: will only be called after the network call is complete
 			self.updateUI()
 		}
 	}
@@ -45,7 +45,7 @@ class PokemonDetailViewController: UIViewController {
 	
 	func updateUI() {
 		currentEvolutionImage.image = UIImage(named: String(pokemon.pokedexId))
-		nextEvolutionImage.image = UIImage(named: String(pokemon.pokedexId + 1)) //NOTE: placeholder imageString
+		nextEvolutionImage.image = UIImage(named: pokemon.nextEvolution)
 		descriptionLabel.text = pokemon.description
 		typeLabel.text = pokemon.type
 		defenceLabel.text = String(pokemon.defense)
