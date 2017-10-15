@@ -24,6 +24,8 @@ class PokemonDetailViewController: UIViewController {
 	@IBOutlet weak var weightLabel: UILabel!
 	@IBOutlet weak var baseAttackLabel: UILabel!
 	@IBOutlet weak var evolutionLabel: UILabel!
+	@IBOutlet weak var blockingView: UIView!
+	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	
 	@IBAction func backButtonPressed(_ sender: UIButton) {
 		dismiss(animated: true, completion: nil)
@@ -38,13 +40,14 @@ class PokemonDetailViewController: UIViewController {
 		}
 	}
 	
-	override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-	
 	func updateUI() {
 		currentEvolutionImage.image = UIImage(named: String(pokemon.pokedexId))
-		nextEvolutionImage.image = UIImage(named: pokemon.nextEvolution)
+		if pokemon.nextEvolution == "back" {
+			nextEvolutionImage.isHidden = true
+		} else {
+			nextEvolutionImage.isHidden = false
+			nextEvolutionImage.image = UIImage(named: pokemon.nextEvolution)
+		}
 		descriptionLabel.text = pokemon.description
 		typeLabel.text = pokemon.type
 		defenceLabel.text = String(pokemon.defense)
@@ -53,5 +56,8 @@ class PokemonDetailViewController: UIViewController {
 		weightLabel.text = pokemon.weight
 		baseAttackLabel.text = String(pokemon.baseAttack)
 		evolutionLabel.text = pokemon.nextEvolutionString
+		
+		spinner.stopAnimating()
+		blockingView.isHidden = true
 	}
 }

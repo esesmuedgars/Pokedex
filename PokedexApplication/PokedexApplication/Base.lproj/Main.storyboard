@@ -406,25 +406,39 @@
                                     <constraint firstAttribute="trailing" secondItem="OuE-iw-RAb" secondAttribute="trailing" id="i9h-J5-Rwf"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIq-qf-v9R" userLabel="Blocking View">
+                                <rect key="frame" x="0.0" y="10" width="320" height="568"/>
+                                <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lM8-q9-xkZ">
+                                <rect key="frame" x="142" y="275.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lM8-q9-xkZ" firstAttribute="centerY" secondItem="ZIq-qf-v9R" secondAttribute="centerY" id="0ig-7F-vxO"/>
                             <constraint firstItem="7OP-8C-k9t" firstAttribute="bottom" secondItem="Bwv-ss-kPp" secondAttribute="bottom" constant="50" id="1aU-3I-SWg"/>
                             <constraint firstItem="o6G-Vn-4Dq" firstAttribute="trailing" secondItem="7OP-8C-k9t" secondAttribute="trailing" id="4dM-E3-g9O"/>
+                            <constraint firstItem="ZIq-qf-v9R" firstAttribute="centerX" secondItem="7OP-8C-k9t" secondAttribute="centerX" id="9Ia-py-YYw"/>
                             <constraint firstItem="o6G-Vn-4Dq" firstAttribute="top" secondItem="6D3-AZ-wWp" secondAttribute="top" id="9iW-bu-aYQ"/>
                             <constraint firstItem="DS5-9w-HHv" firstAttribute="leading" secondItem="7OP-8C-k9t" secondAttribute="leading" id="OXX-Pc-yxl"/>
                             <constraint firstItem="Bwv-ss-kPp" firstAttribute="top" secondItem="o6G-Vn-4Dq" secondAttribute="bottom" constant="50" id="deO-KF-AYT"/>
                             <constraint firstItem="DS5-9w-HHv" firstAttribute="top" secondItem="o6G-Vn-4Dq" secondAttribute="bottom" id="fpw-2l-r34"/>
                             <constraint firstItem="7OP-8C-k9t" firstAttribute="trailing" secondItem="DS5-9w-HHv" secondAttribute="trailing" id="gzx-Vh-zGS"/>
                             <constraint firstItem="7OP-8C-k9t" firstAttribute="trailing" secondItem="Bwv-ss-kPp" secondAttribute="trailing" constant="20" id="jeJ-gy-dxH"/>
+                            <constraint firstItem="lM8-q9-xkZ" firstAttribute="centerX" secondItem="ZIq-qf-v9R" secondAttribute="centerX" id="lLV-L1-y0E"/>
                             <constraint firstItem="7OP-8C-k9t" firstAttribute="bottom" secondItem="DS5-9w-HHv" secondAttribute="bottom" id="mRD-b7-maT"/>
+                            <constraint firstItem="ZIq-qf-v9R" firstAttribute="height" secondItem="6D3-AZ-wWp" secondAttribute="height" id="mch-p1-voZ"/>
                             <constraint firstItem="o6G-Vn-4Dq" firstAttribute="leading" secondItem="7OP-8C-k9t" secondAttribute="leading" id="meq-pE-gB9"/>
+                            <constraint firstItem="ZIq-qf-v9R" firstAttribute="width" secondItem="6D3-AZ-wWp" secondAttribute="width" id="nFG-km-cuG"/>
+                            <constraint firstItem="ZIq-qf-v9R" firstAttribute="centerY" secondItem="7OP-8C-k9t" secondAttribute="centerY" id="nFP-U5-eyN"/>
                             <constraint firstItem="Bwv-ss-kPp" firstAttribute="leading" secondItem="7OP-8C-k9t" secondAttribute="leading" constant="20" id="zWN-hz-zaI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7OP-8C-k9t"/>
                     </view>
                     <connections>
                         <outlet property="baseAttackLabel" destination="etV-iL-nbM" id="QKf-lZ-vGP"/>
+                        <outlet property="blockingView" destination="ZIq-qf-v9R" id="F1n-PF-Oc1"/>
                         <outlet property="containerView" destination="Bwv-ss-kPp" id="adA-l6-UEX"/>
                         <outlet property="currentEvolutionImage" destination="z02-na-F0a" id="1Q2-gb-tZR"/>
                         <outlet property="defenceLabel" destination="jMz-LL-6BZ" id="6E8-L4-lnx"/>
@@ -434,6 +448,7 @@
                         <outlet property="navigationLabel" destination="oyU-EA-kBf" id="aIi-cd-Ayx"/>
                         <outlet property="nextEvolutionImage" destination="CQa-SJ-5L9" id="zNM-ww-zU6"/>
                         <outlet property="pokedexIdLabel" destination="4nf-ar-6lf" id="9XM-gd-znk"/>
+                        <outlet property="spinner" destination="lM8-q9-xkZ" id="d6V-6n-x8y"/>
                         <outlet property="typeLabel" destination="mxu-Yh-5k0" id="zF6-9f-zgF"/>
                         <outlet property="weightLabel" destination="emw-hc-sSs" id="RDz-eG-OTj"/>
                     </connections>
