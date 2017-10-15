@@ -24,7 +24,6 @@ class PokemonDetailViewController: UIViewController {
 	@IBOutlet weak var weightLabel: UILabel!
 	@IBOutlet weak var baseAttackLabel: UILabel!
 	@IBOutlet weak var evolutionLabel: UILabel!
-	@IBOutlet weak var containerRightConstraint: NSLayoutConstraint!
 	
 	@IBAction func backButtonPressed(_ sender: UIButton) {
 		dismiss(animated: true, completion: nil)

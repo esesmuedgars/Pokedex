@@ -62,11 +62,7 @@ class Pokemon {
 			return _type
 		}
 		set {
-			if _type == "Typeless" || _type == nil || _type == newValue {
-				_type = newValue
-			} else {
-				_type = "\(_type!)/\(newValue)"
-			}
+			_type = newValue
 		}
 	}
 	
@@ -170,11 +166,14 @@ class Pokemon {
 				}
 				
 				if let types = dict["types"] as? [Dictionary<String, Any>], types.count > 0 {
+					var typeArray = [String]()
 					for item in types {
 						if let type = item["name"] as? String {
-							self.type = type.capitalized
+							typeArray.append(type.capitalized)
+							
 						}
 					}
+					self.type = typeArray.joined(separator: "/")
 				}
 				
 				if let evolutions = dict["evolutions"] as? [Dictionary<String, Any>], evolutions.count > 0,
@@ -189,9 +188,11 @@ class Pokemon {
 								}
 							}
 							
-//							if let evolvingTo = dict["name"] as? String {
-//								self.nextEvolutionString = evolvingTo
-//							}
+							if let evolvingTo = dict["name"] as? String {
+								if evolvingTo.range(of: "mega") == nil {
+									self.nextEvolutionString = evolvingTo
+								}
+							}
 						}
 						completed()
 					}
@@ -210,18 +211,10 @@ class Pokemon {
 							completed()
 						}
 					}
-				} else {
-					self.description = ""
 				}
 			}
 			completed()
 		}
 	}
 }
-
-//extension String {
-//	public mutating func clear() {
-//		self = ""
-//	}
-//}
 

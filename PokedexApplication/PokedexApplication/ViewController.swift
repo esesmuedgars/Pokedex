@@ -157,12 +157,5 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
 			}
 		}
 	}
-	
-//	override func viewWillAppear(_ animated: Bool) {
-//		searchBar.text?.clear()
-//		searching = false
-//		collectionView.reloadData()
-//		collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-//	}
 }
 

@@ -425,7 +425,6 @@
                     </view>
                     <connections>
                         <outlet property="baseAttackLabel" destination="etV-iL-nbM" id="QKf-lZ-vGP"/>
-                        <outlet property="containerRightConstraint" destination="P8v-cn-hn4" id="aYr-bw-4NF"/>
                         <outlet property="containerView" destination="Bwv-ss-kPp" id="adA-l6-UEX"/>
                         <outlet property="currentEvolutionImage" destination="z02-na-F0a" id="1Q2-gb-tZR"/>
                         <outlet property="defenceLabel" destination="jMz-LL-6BZ" id="6E8-L4-lnx"/>
