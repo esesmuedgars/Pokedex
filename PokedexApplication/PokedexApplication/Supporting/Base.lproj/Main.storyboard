@@ -73,7 +73,7 @@
                                     <constraint firstItem="V18-zP-n1S" firstAttribute="leading" secondItem="H2e-KT-CPd" secondAttribute="leading" constant="20" id="YJb-Bn-gLR"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search Pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="TM8-4F-Ikj">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Search pokémon" translatesAutoresizingMaskIntoConstraints="NO" id="TM8-4F-Ikj">
                                 <rect key="frame" x="0.0" y="65" width="320" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

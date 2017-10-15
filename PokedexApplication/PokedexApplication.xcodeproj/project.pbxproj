@@ -97,19 +97,11 @@
 		A51CE78E1F826959003B8FD6 /* PokedexApplication */ = {
 			isa = PBXGroup;
 			children = (
-				A51CE7A61F827699003B8FD6 /* View */,
 				A51CE7A31F826F63003B8FD6 /* Model */,
-				A51CE78F1F826959003B8FD6 /* AppDelegate.swift */,
-				A57D53101F82CAA800620FE5 /* csv.swift */,
-				A51CE7911F826959003B8FD6 /* ViewController.swift */,
-				A5AF9C931F8D13D80022A79B /* PokemonDetailViewController.swift */,
-				A51CE7931F826959003B8FD6 /* Main.storyboard */,
-				A5FCCFD01F8BFBFC0011EB58 /* pokemon.ttf */,
-				A5FCCFD21F8BFC290011EB58 /* music.mp3 */,
-				A51CE7981F826959003B8FD6 /* LaunchScreen.storyboard */,
-				A51CE7A11F826D12003B8FD6 /* Assets.xcassets */,
-				A51CE7A21F826D2E003B8FD6 /* pokemon.csv */,
-				A51CE79B1F826959003B8FD6 /* Info.plist */,
+				A51CE7A61F827699003B8FD6 /* View */,
+				A5F5A2381F935662007A563E /* Controllers */,
+				A5F5A2391F93568C007A563E /* Resources */,
+				A5F5A23A1F9356BF007A563E /* Supporting */,
 				A53422101F9137680085CA1E /* Constants.swift */,
 			);
 			path = PokedexApplication;
@@ -129,6 +121,38 @@
 				A51CE7A71F8276C4003B8FD6 /* PokemonCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A5F5A2381F935662007A563E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A51CE7911F826959003B8FD6 /* ViewController.swift */,
+				A5AF9C931F8D13D80022A79B /* PokemonDetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A5F5A2391F93568C007A563E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A57D53101F82CAA800620FE5 /* csv.swift */,
+				A51CE7A21F826D2E003B8FD6 /* pokemon.csv */,
+				A5FCCFD01F8BFBFC0011EB58 /* pokemon.ttf */,
+				A5FCCFD21F8BFC290011EB58 /* music.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A5F5A23A1F9356BF007A563E /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				A51CE78F1F826959003B8FD6 /* AppDelegate.swift */,
+				A51CE7931F826959003B8FD6 /* Main.storyboard */,
+				A51CE7981F826959003B8FD6 /* LaunchScreen.storyboard */,
+				A51CE7A11F826D12003B8FD6 /* Assets.xcassets */,
+				A51CE79B1F826959003B8FD6 /* Info.plist */,
+			);
+			path = Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,7 +435,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D6X36654RS;
-				INFOPLIST_FILE = PokedexApplication/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PokedexApplication/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edgarsvanags.PokedexApplication;
@@ -429,7 +453,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D6X36654RS;
-				INFOPLIST_FILE = PokedexApplication/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PokedexApplication/Supporting/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.edgarsvanags.PokedexApplication;
