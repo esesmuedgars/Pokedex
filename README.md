@@ -5,6 +5,6 @@
 * Using [Alamofire](https://github.com/Alamofire/Alamofire) for parsing data and CocoaPoads;
 * Using [Pokémon Font](https://www.dafont.com/pokemon.font) in some parts of the application;
 * Using NSUserDefaults to locally store user set preferences of music playing;
-* Used some User Defined Runtime Attributes along with key-value observing to alter some search field element colors.
+* Used some "User Defined Runtime Attributes" along with Key-value observing to alter UISearchBar element colors.
 
 <img alt="Gif image of project" src="https://github.com/esesmuedgars/pokedex-application/blob/gif/pokedex-application-gif.gif" width="50%" />
