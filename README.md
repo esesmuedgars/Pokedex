@@ -1,4 +1,4 @@
-# Pokedex Application
+# Pokedex application
 ###### based on [Devslopes iOS development course](https://www.udemy.com/devslopes-ios10/learn/v4/content)
 
 * Using [PokeAPI](https://github.com/PokeAPI/pokeapi) v1 .csv file from [RESTful API](https://pokeapi.co/docsv1/);
